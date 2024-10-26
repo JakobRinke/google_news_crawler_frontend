@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakobs Nachrichten</title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <header>
+        <h1> Jakobs News </h1>
+        
+    </header>
+                
+
+    </header>
+
+    <main class="container-fluid">
+        <div class="container">
+            <h2> Nachrichten aus Deutschland </h2>
+        </div>
+        <br>
+        <form action="">
+            <div class="container">
+                <label for="search"> Suche: </label>
+                <fieldset role="group">
+                    <input type="text" id="search" name="search">
+                    <a type="button" href="/index.html"> x </a>
+                </fieldset>
+               
+                <button type="submit"> Suchen </button>
+            </div>
+        </form>
+
+        <br> 
+        <div class="container" id="Nachrichten">
+            <!--- Nachrichten Prefab  -->
+            <article>
+                <div class="grid">
+                    <div class="container-fluid">
+                        <a href="/see_news.html?date=DATE&id=ID">
+                            <hgroup>
+                                <h3> TITLE </h3>
+                                <p> DATE </p>
+                            </hgroup>           
+                        </a>
+                        <br>
+                        <div class="container-fluid"> 
+                            <div> 
+                                SOURCES
+                            </div>
+                        </div>
+
+                        <br> <br>
+                        <div class="coverage_container">
+                            <div class="left-coverage" style="width: R_COVER%;"></div>
+                            <div class="center-coverage" style="width: C_COVER%;"></div>
+                            <div class="right-coverage" style="width: L_COVER%;"></div>
+                        </div>
+                        <br> 
+            
+                    </div>
+                    <div class="art-img-container">
+                        <a href="/see_news.html?date=DATE&id=ID">
+                            <img class="container" src="IMG" alt="" crossorigin="anonymous">
+                        </a>
+
+                    </div>
+    
+                </div>
+                
+            </article>
+        
+        </div>
+
+        <br> 
+        <div class="container">
+                
+            <button id="load_more" onclick="load_more()"> Mehr Nachrichten </button>
+
+        </div>
+        <br>
+        
+
+    </main>
+
+
+    
+    <script src="js/source_map.js"> </script>
+    <script src="js/newsmanager.js"></script>
+    <script src="js/newsloader.js"></script>
+    
+</body>
+</html>
