@@ -34,7 +34,7 @@ async function load_and_show() {
     child = child.replaceAll("DATE", n.date)
     child = child.replaceAll("IMG", n.img)
     child = child.replaceAll("TITLE", n.title)
-    child = child.replaceAll("SOURCE_URL", n.url)
+    child = child.replaceAll("URL", n.url)
     child = child.replaceAll("OVERALL_SUMMARY", marked.parse(n.overall_summary))
     child = child.replaceAll("L_COVER", n.left_coverage_pc);
     child = child.replaceAll("R_COVER", n.right_coverage_pc);
@@ -56,11 +56,11 @@ function load_sources_html(sources) {
             continue
         }
         var source = SOURCE_PREFAB;
-        source = source.replaceAll("IMG_URL", s.img)
-        source = source.replaceAll("URL", s.url)
+        source = source.replaceAll("IMG_URL", s.img);
         source = source.replaceAll("NAME", s.name)
         source = source.replaceAll("SOURCE_CONTENT", marked.parse(s.summary))
         source = source.replaceAll("SOURCE_URL", s.src_url)
+        source = source.replaceAll("URL", s.url)
         source = source.replaceAll("TITLE", s.name)
         var img = SOURCE_IMG_PREFAB;
         img = img.replaceAll("IMG_URL", s.img)
