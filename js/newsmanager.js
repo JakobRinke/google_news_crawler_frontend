@@ -18,32 +18,46 @@ async function load_new_from(date, id,) {
     return new News(data, date, id)
 }
 
+async function collapse_batch(batch, search, skip, accumulator) {
+    batch = await Promise.all(batch)
+    for (let n of batch) {
+        if (search != "" && !n.overall_summary.toLowerCase().includes(search.toLowerCase())) {
+            continue
+        }
+        if (skip > 0) {
+            skip--;
+            continue
+        }
+        accumulator.push(n)
+    }
+    return skip
+}
 
+const BATCH_SIZE = 10
 async function load_newest_news(number, skip, search) {
     if (Object.keys(NEWS_MANAGER).length == 0) {
         await load_news_manager()
     }
-    var skipped = 0;
     var news = []
+    var current_batch = []
     // go trough all the dates in reverse order
     for (let date of Object.keys(NEWS_MANAGER).reverse()) {
         let news_ids = NEWS_MANAGER[date]
         for (let id of news_ids.reverse()) {
-            var n = await load_new_from(date, id)
-            if (search != "" && !n.overall_summary.toLowerCase().includes(search.toLowerCase())) {
-                continue
+            current_batch.push(load_new_from(date, id))
+            if (current_batch.length >= BATCH_SIZE) {
+                skip = await collapse_batch(current_batch, search, skip, news)
+                current_batch = []
             }
-            if (skipped < skip) {
-                skipped += 1
-                continue
-            }
-            news.push(n)
             if (news.length >= number) {
-                return news
+                return news.slice(0, Math.min(number, news.length))
             }
         }
     }
-    return news
+    if (current_batch.length > 0) {
+        await collapse_batch(current_batch, search, skip, news)
+    }
+    return news.slice(0, Math.min(number, news.length))
 }
 
 
