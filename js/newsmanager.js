@@ -76,6 +76,10 @@ class News {
             } catch (e) {
             }
         }
+        // remove duplicates by name
+        this.sources = this.sources.filter((s, i, a) => a.findIndex(t => (t.name === s.name)) === i)
+
+
         this.title = this.overall_summary.split("\n")[0]
             .replace("## Zusammenfassung der", "")
             .replace("## Zusammenfassung des", "")
