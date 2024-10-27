@@ -59,8 +59,7 @@ function load_sources_html(sources) {
         source = source.replaceAll("IMG_URL", s.img);
         source = source.replaceAll("NAME", s.name)
         source = source.replaceAll("SOURCE_CONTENT", marked.parse(s.summary))
-        source = source.replaceAll("SOURCE_URL", s.src_url)
-        source = source.replaceAll("URL", s.url)
+        source = source.replaceAll("SOURCE_URL", s.url)
         source = source.replaceAll("TITLE", s.name)
         var img = SOURCE_IMG_PREFAB;
         img = img.replaceAll("IMG_URL", s.img)
